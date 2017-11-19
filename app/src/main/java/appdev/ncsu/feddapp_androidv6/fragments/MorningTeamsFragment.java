@@ -2,22 +2,40 @@ package appdev.ncsu.feddapp_androidv6.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+
 import appdev.ncsu.feddapp_androidv6.R;
+import appdev.ncsu.feddapp_androidv6.models.TeamModel;
+import appdev.ncsu.feddapp_androidv6.utils.Consts;
+import appdev.ncsu.feddapp_androidv6.view_holders.TeamVH;
+import cz.kinst.jakub.view.SimpleStatefulLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MorningTeamsFragment extends Fragment {
 
-    public static MorningTeamsFragment newInstance() {
+    private static final String TAG = "MorningTeamsFragment";
+    private SimpleStatefulLayout mStatefulLayout;
+    private RecyclerView mRV;
+    private FirestoreRecyclerAdapter<TeamModel, TeamVH> mAdapter;
+
+    public static MorningTeamsFragment newInstance(String projectName) {
 
         Bundle args = new Bundle();
-
+        args.putString(Consts.KEY_PROJECT_NAME, projectName);
         MorningTeamsFragment fragment = new MorningTeamsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -32,6 +50,87 @@ public class MorningTeamsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_morning_teams, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findViews(view);
+
+        String projectName = getArguments().getString(Consts.KEY_PROJECT_NAME);
+
+        if (projectName == null || projectName.equals("")) {
+            mStatefulLayout.setEmptyText("Project Name is empty or null!");
+            mStatefulLayout.showEmpty();
+            return;
+        }
+
+        mStatefulLayout.showProgress();
+
+        Query query = FirebaseFirestore.getInstance()
+                .collection("Projects")
+                .document(projectName)
+                .collection(Consts.KEY_FIRSTORE_COLLECTION_MORNING);
+
+        FirestoreRecyclerOptions<TeamModel> options = new FirestoreRecyclerOptions.Builder<TeamModel>()
+                .setQuery(query, TeamModel.class)
+                .build();
+
+        mAdapter = new FirestoreRecyclerAdapter<TeamModel, TeamVH>(options) {
+            @Override
+            public void onBindViewHolder(TeamVH holder, int position, TeamModel model) {
+                holder.setData(model);
+            }
+
+            @Override
+            public TeamVH onCreateViewHolder(ViewGroup group, int i) {
+                // Create a new instance of the ViewHolder, in this case we are using a custom
+                // layout called R.layout.message for each item
+                View view = LayoutInflater.from(group.getContext())
+                        .inflate(R.layout.team_list_item_layout, group, false);
+
+                return new TeamVH(view);
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                mStatefulLayout.showContent();
+            }
+
+            @Override
+            public void onError(FirebaseFirestoreException e) {
+                super.onError(e);
+
+                if (e.getCode() == FirebaseFirestoreException.Code.PERMISSION_DENIED) {
+                    mStatefulLayout.setEmptyText("No Permission");
+                    mStatefulLayout.showEmpty();
+                } else {
+                    mStatefulLayout.showEmpty();
+                    mStatefulLayout.setEmptyText(R.string.something_went_wrong_while_getting_teams);
+                }
+            }
+        };
+
+        mRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRV.setAdapter(mAdapter);
+    }
+
+    private void findViews(View view) {
+        mStatefulLayout = view.findViewById(R.id.state_full_layout);
+        mRV = view.findViewById(R.id.recycler_view);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.stopListening();
     }
 
 }

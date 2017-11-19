@@ -6,4 +6,8 @@ package appdev.ncsu.feddapp_androidv6.utils;
 
 public class Consts {
 
+    public static final String KEY_PROJECT_NAME = "key_project_name";
+    public static final String KEY_FIRSTORE_COLLECTION_PROJECT = "Projects";
+    public static final String KEY_FIRSTORE_COLLECTION_MORNING = "Morning";
+
 }

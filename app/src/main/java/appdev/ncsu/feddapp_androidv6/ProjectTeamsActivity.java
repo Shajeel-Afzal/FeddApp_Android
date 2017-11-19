@@ -12,14 +12,17 @@ import android.support.v7.widget.Toolbar;
 
 import appdev.ncsu.feddapp_androidv6.fragments.AfternoonTeamsFragment;
 import appdev.ncsu.feddapp_androidv6.fragments.MorningTeamsFragment;
+import appdev.ncsu.feddapp_androidv6.utils.Consts;
 
 public class ProjectTeamsActivity extends BaseActivity {
 
     private MorningTeamsFragment mMorningTeamsFrag;
     private AfternoonTeamsFragment mAfternoonTeamsFrag;
+    private String mProjectName;
 
-    public static void start(Context context) {
+    public static void start(Context context, String projectName) {
         Intent starter = new Intent(context, ProjectTeamsActivity.class);
+        starter.putExtra(Consts.KEY_PROJECT_NAME, projectName);
         context.startActivity(starter);
     }
 
@@ -41,6 +44,8 @@ public class ProjectTeamsActivity extends BaseActivity {
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(), this));
 
         setSupportActionBar(toolbar);
+
+        mProjectName = getIntent().getStringExtra(Consts.KEY_PROJECT_NAME);
     }
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -61,7 +66,7 @@ public class ProjectTeamsActivity extends BaseActivity {
             switch (position) {
                 case 0:
                     if (mMorningTeamsFrag == null)
-                        mMorningTeamsFrag = MorningTeamsFragment.newInstance();
+                        mMorningTeamsFrag = MorningTeamsFragment.newInstance(mProjectName);
 
                     return mMorningTeamsFrag;
                 case 1:

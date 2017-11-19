@@ -43,6 +43,10 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectVH> {
         projectModels.add(new ProjectModel("Toy Design", R.drawable.toy));
     }
 
+    public ProjectModel getProjectModel(int position) {
+        return projectModels.get(position);
+    }
+
     @Override
     public ProjectVH onCreateViewHolder(ViewGroup parent, int viewType) {
         mProjectVH = new ProjectVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.project_list_item_layout, parent, false));
