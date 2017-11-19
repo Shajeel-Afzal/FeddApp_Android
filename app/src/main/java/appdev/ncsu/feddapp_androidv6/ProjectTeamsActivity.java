@@ -10,14 +10,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import appdev.ncsu.feddapp_androidv6.fragments.AfternoonTeamsFragment;
 import appdev.ncsu.feddapp_androidv6.fragments.MorningTeamsFragment;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
 
 public class ProjectTeamsActivity extends BaseActivity {
 
     private MorningTeamsFragment mMorningTeamsFrag;
-    private AfternoonTeamsFragment mAfternoonTeamsFrag;
+    private MorningTeamsFragment mAfternoonTeamsFrag;
     private String mProjectName;
 
     public static void start(Context context, String projectName) {
@@ -66,18 +65,17 @@ public class ProjectTeamsActivity extends BaseActivity {
             switch (position) {
                 case 0:
                     if (mMorningTeamsFrag == null)
-                        mMorningTeamsFrag = MorningTeamsFragment.newInstance(mProjectName);
+                        mMorningTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_MORNING);
 
                     return mMorningTeamsFrag;
                 case 1:
                     if (mAfternoonTeamsFrag == null)
-                        mAfternoonTeamsFrag = AfternoonTeamsFragment.newInstance();
+                        mAfternoonTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
 
                     return mAfternoonTeamsFrag;
-
                 default:
                     if (mAfternoonTeamsFrag == null)
-                        mAfternoonTeamsFrag = AfternoonTeamsFragment.newInstance();
+                        mAfternoonTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
 
                     return mAfternoonTeamsFrag;
             }

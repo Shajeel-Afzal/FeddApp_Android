@@ -32,10 +32,11 @@ public class MorningTeamsFragment extends Fragment {
     private RecyclerView mRV;
     private FirestoreRecyclerAdapter<TeamModel, TeamVH> mAdapter;
 
-    public static MorningTeamsFragment newInstance(String projectName) {
+    public static MorningTeamsFragment newInstance(String projectName, String type) {
 
         Bundle args = new Bundle();
         args.putString(Consts.KEY_PROJECT_NAME, projectName);
+        args.putString(Consts.KEY_TEAM_TYPE, type);
         MorningTeamsFragment fragment = new MorningTeamsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -58,6 +59,7 @@ public class MorningTeamsFragment extends Fragment {
         findViews(view);
 
         String projectName = getArguments().getString(Consts.KEY_PROJECT_NAME);
+        String type = getArguments().getString(Consts.KEY_TEAM_TYPE, Consts.KEY_FIRSTORE_COLLECTION_MORNING);
 
         if (projectName == null || projectName.equals("")) {
             mStatefulLayout.setEmptyText("Project Name is empty or null!");
@@ -70,7 +72,7 @@ public class MorningTeamsFragment extends Fragment {
         Query query = FirebaseFirestore.getInstance()
                 .collection("Projects")
                 .document(projectName)
-                .collection(Consts.KEY_FIRSTORE_COLLECTION_MORNING);
+                .collection(type);
 
         FirestoreRecyclerOptions<TeamModel> options = new FirestoreRecyclerOptions.Builder<TeamModel>()
                 .setQuery(query, TeamModel.class)
@@ -84,8 +86,6 @@ public class MorningTeamsFragment extends Fragment {
 
             @Override
             public TeamVH onCreateViewHolder(ViewGroup group, int i) {
-                // Create a new instance of the ViewHolder, in this case we are using a custom
-                // layout called R.layout.message for each item
                 View view = LayoutInflater.from(group.getContext())
                         .inflate(R.layout.team_list_item_layout, group, false);
 
