@@ -8,16 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 
 import appdev.ncsu.feddapp_androidv6.adapters.ProjectsAdapter;
+import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
 import appdev.ncsu.feddapp_androidv6.utils.AppUtils;
 import appdev.ncsu.feddapp_androidv6.utils.GridSpacingItemDecoration;
 
 public class MainActivity extends BaseActivity {
-
 
     private ProjectsAdapter mAdapter;
 
@@ -25,7 +26,6 @@ public class MainActivity extends BaseActivity {
         Intent starter = new Intent(context, MainActivity.class);
         context.startActivity(starter);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,12 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns,
                 (int) AppUtils.convertDpToPixel(16, this), true));
 
-        mAdapter = new ProjectsAdapter();
+        mAdapter = new ProjectsAdapter(new OnRecyclerItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ProjectTeamsActivity.start(MainActivity.this);
+            }
+        });
 
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -61,4 +66,5 @@ public class MainActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

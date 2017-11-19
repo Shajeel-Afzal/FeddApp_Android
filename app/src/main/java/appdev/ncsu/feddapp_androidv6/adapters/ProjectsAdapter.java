@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import appdev.ncsu.feddapp_androidv6.R;
+import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
 import appdev.ncsu.feddapp_androidv6.models.ProjectModel;
 import appdev.ncsu.feddapp_androidv6.view_holders.ProjectVH;
 
@@ -17,8 +18,13 @@ import appdev.ncsu.feddapp_androidv6.view_holders.ProjectVH;
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectVH> {
 
     private final ArrayList<ProjectModel> projectModels;
+    private OnRecyclerItemClickListener onRecyclerItemClickListener;
+    private ProjectVH mProjectVH;
 
-    public ProjectsAdapter() {
+    public ProjectsAdapter(OnRecyclerItemClickListener onRecyclerItemClickListener) {
+
+        this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+
         projectModels = new ArrayList<>();
         projectModels.add(new ProjectModel("3D Printing", R.drawable.dprinting));
         projectModels.add(new ProjectModel("Animatronics", R.drawable.animatronics));
@@ -39,7 +45,9 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectVH> {
 
     @Override
     public ProjectVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ProjectVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.project_list_item_layout, parent, false));
+        mProjectVH = new ProjectVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.project_list_item_layout, parent, false));
+        mProjectVH.setOnRecyclerItemClickListener(onRecyclerItemClickListener);
+        return mProjectVH;
     }
 
     @Override
