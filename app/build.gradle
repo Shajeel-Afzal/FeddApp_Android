@@ -41,6 +41,12 @@ dependencies {
     compile "com.google.firebase:firebase-firestore:${googlePlayServicesVersion}"
     compile "com.google.firebase:firebase-auth:${googlePlayServicesVersion}"
 
+    // FirebaseUI for Cloud Firestore
+    compile "com.firebaseui:firebase-ui-firestore:${firebaseAndroidUILibVersion}"
+
+    // FirebaseUI for Firebase Auth
+    compile "com.firebaseui:firebase-ui-auth:${firebaseAndroidUILibVersion}"
+
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 

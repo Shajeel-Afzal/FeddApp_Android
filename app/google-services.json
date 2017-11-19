@@ -40,15 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "793785966281-igip9i1bqip3q9tcg1449e8jt4fnlngb.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.NCSUAdc.FEDD"
               }
+            },
+            {
+              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },
@@ -65,6 +65,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "793785966281-e1bphiu9uc2nr0j78ugjqca3vl5k6taa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "appdev.ncsu.fedd_app_androidv5",
+            "certificate_hash": "0fbc8e4ac81be01aa63b3593d231a60ac1cfed92"
+          }
+        },
         {
           "client_id": "793785966281-cfnoomgd1p7q6b699appm2me2i4j4clb.apps.googleusercontent.com",
           "client_type": 1,
@@ -91,15 +99,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "793785966281-igip9i1bqip3q9tcg1449e8jt4fnlngb.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.NCSUAdc.FEDD"
               }
+            },
+            {
+              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },
@@ -117,6 +125,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "793785966281-kp3mc7rn4cosdhoqaabi1m4lppuk5tbf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "appdev.ncsu.feddapp_androidv6",
+            "certificate_hash": "0fbc8e4ac81be01aa63b3593d231a60ac1cfed92"
+          }
+        },
+        {
           "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -131,8 +147,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793785966281-igip9i1bqip3q9tcg1449e8jt4fnlngb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.NCSUAdc.FEDD"
+              }
+            },
+            {
+              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
