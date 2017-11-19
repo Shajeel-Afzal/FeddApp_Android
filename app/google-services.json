@@ -1,0 +1,144 @@
+{
+  "project_info": {
+    "project_number": "793785966281",
+    "firebase_url": "https://fedapp-ncsu.firebaseio.com",
+    "project_id": "fedapp-ncsu",
+    "storage_bucket": "fedapp-ncsu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793785966281:android:13615fb787282127",
+        "android_client_info": {
+          "package_name": "com.ncsuappdev.feddappv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793785966281-9av03o7lcga5e0f29f6ua88jqh001emi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ncsuappdev.feddappv2",
+            "certificate_hash": "85da63c725fe222d91b5fb543d49fe82fde1d6ef"
+          }
+        },
+        {
+          "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2iTbelzF1m0CEufPQp85Vb4sGerEsVUM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "793785966281-igip9i1bqip3q9tcg1449e8jt4fnlngb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.NCSUAdc.FEDD"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793785966281:android:3bdd3fe6b5e7e8b6",
+        "android_client_info": {
+          "package_name": "appdev.ncsu.fedd_app_androidv5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793785966281-cfnoomgd1p7q6b699appm2me2i4j4clb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "appdev.ncsu.fedd_app_androidv5",
+            "certificate_hash": "85da63c725fe222d91b5fb543d49fe82fde1d6ef"
+          }
+        },
+        {
+          "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2iTbelzF1m0CEufPQp85Vb4sGerEsVUM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "793785966281-igip9i1bqip3q9tcg1449e8jt4fnlngb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.NCSUAdc.FEDD"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793785966281:android:0cde624d6d66e2a5",
+        "android_client_info": {
+          "package_name": "appdev.ncsu.feddapp_androidv6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793785966281-mi8h217ptd1lmtt88g9dqpt7msrad4b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2iTbelzF1m0CEufPQp85Vb4sGerEsVUM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
