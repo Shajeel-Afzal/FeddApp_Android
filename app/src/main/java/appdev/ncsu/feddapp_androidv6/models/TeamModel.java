@@ -9,16 +9,16 @@ import java.util.List;
 public class TeamModel {
 
     private String Name;
-    private Double Score;
+    private Double Total;
     private boolean Published;
     private List<String> Members;
 
     public TeamModel() {
     }
 
-    public TeamModel(String name, Double score, boolean published, List<String> members) {
+    public TeamModel(String name, Double total, boolean published, List<String> members) {
         Name = name;
-        Score = score;
+        Total = total;
         Published = published;
         Members = members;
     }
@@ -31,12 +31,12 @@ public class TeamModel {
         Name = name;
     }
 
-    public Double getScore() {
-        return Score;
+    public Double getTotal() {
+        return Total;
     }
 
-    public void setScore(Double score) {
-        Score = score;
+    public void setTotal(Double total) {
+        Total = total;
     }
 
     public boolean isPublished() {

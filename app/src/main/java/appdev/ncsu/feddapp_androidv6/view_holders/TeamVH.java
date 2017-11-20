@@ -13,7 +13,7 @@ import appdev.ncsu.feddapp_androidv6.models.TeamModel;
 
 public class TeamVH extends RecyclerView.ViewHolder {
 
-    private TextView teamNameTV;
+    private TextView teamNameTV, scoreTV;
 
     public TeamVH(View itemView) {
         super(itemView);
@@ -22,9 +22,11 @@ public class TeamVH extends RecyclerView.ViewHolder {
 
     private void findViews(View itemView) {
         teamNameTV = itemView.findViewById(R.id.team_name_tv);
+        scoreTV = itemView.findViewById(R.id.score_tv);
     }
 
     public void setData(TeamModel model) {
         teamNameTV.setText(model.getName());
+        scoreTV.setText(String.valueOf(model.getTotal() == null ? "" : model.getTotal()));
     }
 }
