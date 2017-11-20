@@ -1,6 +1,8 @@
 package appdev.ncsu.feddapp_androidv6;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.ArrayMap;
 
 /**
@@ -14,8 +16,11 @@ public class GlobalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
-
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
 }
