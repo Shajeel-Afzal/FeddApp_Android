@@ -25,24 +25,24 @@ import cz.kinst.jakub.view.SimpleStatefulLayout;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MorningTeamsFragment extends Fragment {
+public class TeamsFragment extends Fragment {
 
-    private static final String TAG = "MorningTeamsFragment";
+    private static final String TAG = "TeamsFragment";
     private SimpleStatefulLayout mStatefulLayout;
     private RecyclerView mRV;
     private FirestoreRecyclerAdapter<TeamModel, TeamVH> mAdapter;
 
-    public static MorningTeamsFragment newInstance(String projectName, String type) {
+    public static TeamsFragment newInstance(String projectName, String type) {
 
         Bundle args = new Bundle();
         args.putString(Consts.KEY_PROJECT_NAME, projectName);
         args.putString(Consts.KEY_TEAM_TYPE, type);
-        MorningTeamsFragment fragment = new MorningTeamsFragment();
+        TeamsFragment fragment = new TeamsFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public MorningTeamsFragment() {
+    public TeamsFragment() {
         // Required empty public constructor
     }
 

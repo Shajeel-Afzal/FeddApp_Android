@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
         mAdapter = new ProjectsAdapter(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ProjectTeamsActivity.start(MainActivity.this, mAdapter.getProjectModel(position).getProjectName());
+                TeamsActivity.start(MainActivity.this, mAdapter.getProjectModel(position).getProjectName());
             }
         });
 

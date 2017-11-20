@@ -10,17 +10,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import appdev.ncsu.feddapp_androidv6.fragments.MorningTeamsFragment;
+import appdev.ncsu.feddapp_androidv6.fragments.TeamsFragment;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
 
-public class ProjectTeamsActivity extends BaseActivity {
+public class TeamsActivity extends BaseActivity {
 
-    private MorningTeamsFragment mMorningTeamsFrag;
-    private MorningTeamsFragment mAfternoonTeamsFrag;
+    private TeamsFragment mMorningTeamsFrag;
+    private TeamsFragment mAfternoonTeamsFrag;
     private String mProjectName;
 
     public static void start(Context context, String projectName) {
-        Intent starter = new Intent(context, ProjectTeamsActivity.class);
+        Intent starter = new Intent(context, TeamsActivity.class);
         starter.putExtra(Consts.KEY_PROJECT_NAME, projectName);
         context.startActivity(starter);
     }
@@ -65,17 +65,17 @@ public class ProjectTeamsActivity extends BaseActivity {
             switch (position) {
                 case 0:
                     if (mMorningTeamsFrag == null)
-                        mMorningTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_MORNING);
+                        mMorningTeamsFrag = TeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_MORNING);
 
                     return mMorningTeamsFrag;
                 case 1:
                     if (mAfternoonTeamsFrag == null)
-                        mAfternoonTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
+                        mAfternoonTeamsFrag = TeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
 
                     return mAfternoonTeamsFrag;
                 default:
                     if (mAfternoonTeamsFrag == null)
-                        mAfternoonTeamsFrag = MorningTeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
+                        mAfternoonTeamsFrag = TeamsFragment.newInstance(mProjectName, Consts.KEY_FIRSTORE_COLLECTION_AFTERNOON);
 
                     return mAfternoonTeamsFrag;
             }
