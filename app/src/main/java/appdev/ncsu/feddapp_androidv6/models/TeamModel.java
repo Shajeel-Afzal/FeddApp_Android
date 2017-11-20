@@ -13,7 +13,7 @@ public class TeamModel implements Parcelable {
 
     private String Name;
     private Double Total;
-    private boolean Published;
+    private boolean Published = true;
     private List<String> Members;
 
     public TeamModel() {
