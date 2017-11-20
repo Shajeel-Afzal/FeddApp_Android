@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import appdev.ncsu.feddapp_androidv6.R;
 import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
 import appdev.ncsu.feddapp_androidv6.models.TeamModel;
@@ -33,7 +35,8 @@ public class TeamVH extends RecyclerView.ViewHolder implements View.OnClickListe
 
     public void setData(TeamModel model) {
         teamNameTV.setText(model.getName());
-        scoreTV.setText(String.valueOf(model.getTotal() == null ? "" : model.getTotal()));
+        scoreTV.setText(String.valueOf(model.getTotal() == null ? "0" : String.format(Locale.US,
+                "%.3f", model.getTotal())));
 
         if (!model.isPublished()) {
             mItemView.setBackgroundColor(Color.GRAY);

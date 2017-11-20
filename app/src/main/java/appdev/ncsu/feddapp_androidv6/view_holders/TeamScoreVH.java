@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import appdev.ncsu.feddapp_androidv6.R;
 import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
 import appdev.ncsu.feddapp_androidv6.models.TeamScoreModel;
@@ -32,7 +34,8 @@ public class TeamScoreVH extends RecyclerView.ViewHolder implements View.OnClick
 
     public void setData(TeamScoreModel model) {
         teamNameTV.setText(model.getName());
-//        scoreTV.setText(String.valueOf(model.getTotal() == null ? "" : model.getTotal()));
+        scoreTV.setText(String.valueOf(model.getTotal() == null ? "0" : String.format(Locale.US,
+                "%.3f", model.getTotal())));
     }
 
     public void setOnRecyclerViewClickListener(OnRecyclerItemClickListener onRecyclerViewClickListener) {
