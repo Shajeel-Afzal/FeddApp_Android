@@ -18,42 +18,52 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 import appdev.ncsu.feddapp_androidv6.R;
-import appdev.ncsu.feddapp_androidv6.TeamDetailActivity;
 import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
-import appdev.ncsu.feddapp_androidv6.models.TeamModel;
+import appdev.ncsu.feddapp_androidv6.models.TeamScoreModel;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
-import appdev.ncsu.feddapp_androidv6.view_holders.TeamVH;
+import appdev.ncsu.feddapp_androidv6.view_holders.TeamScoreVH;
 import cz.kinst.jakub.view.SimpleStatefulLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeamsFragment extends Fragment {
+public class TeamScoresListFragment extends Fragment {
 
-    private static final String TAG = "TeamsFragment";
+    private String mTeamName;
     private SimpleStatefulLayout mStatefulLayout;
     private RecyclerView mRV;
-    private FirestoreRecyclerAdapter<TeamModel, TeamVH> mAdapter;
+    private String mProjectName;
+    private String mTeamType;
+    private FirestoreRecyclerAdapter<TeamScoreModel, TeamScoreVH> mAdapter;
 
-    public static TeamsFragment newInstance(String projectName, String type) {
+    public static TeamScoresListFragment newInstance(String projectName, String teamType, String teamName) {
 
         Bundle args = new Bundle();
+        args.putString(Consts.KEY_TEAM_NAME, teamName);
         args.putString(Consts.KEY_PROJECT_NAME, projectName);
-        args.putString(Consts.KEY_TEAM_TYPE, type);
-        TeamsFragment fragment = new TeamsFragment();
+        args.putString(Consts.KEY_TEAM_TYPE, teamType);
+        TeamScoresListFragment fragment = new TeamScoresListFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public TeamsFragment() {
+    public TeamScoresListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mTeamName = getArguments().getString(Consts.KEY_TEAM_NAME);
+        mProjectName = getArguments().getString(Consts.KEY_PROJECT_NAME);
+        mTeamType = getArguments().getString(Consts.KEY_TEAM_TYPE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_morning_teams, container, false);
+        return inflater.inflate(R.layout.fragment_team_scores, container, false);
     }
 
     @Override
@@ -61,11 +71,8 @@ public class TeamsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
 
-        final String projectName = getArguments().getString(Consts.KEY_PROJECT_NAME);
-        final String type = getArguments().getString(Consts.KEY_TEAM_TYPE, Consts.KEY_FIRSTORE_COLLECTION_MORNING);
-
-        if (projectName == null || projectName.equals("")) {
-            mStatefulLayout.setEmptyText("Team Name is empty or null!");
+        if (mTeamName == null || mTeamName.equals("")) {
+            mStatefulLayout.setEmptyText("Team name is empty or null!");
             mStatefulLayout.showEmpty();
             return;
         }
@@ -74,31 +81,33 @@ public class TeamsFragment extends Fragment {
 
         Query query = FirebaseFirestore.getInstance()
                 .collection(Consts.KEY_FIRSTORE_COLLECTION_PROJECTS)
-                .document(projectName)
-                .collection(type);
+                .document(mProjectName)
+                .collection(mTeamType)
+                .document(mTeamName)
+                .collection(Consts.KEY_FIRSTORE_COLLECTION_TEAM_SCORES);
 
-        FirestoreRecyclerOptions<TeamModel> options = new FirestoreRecyclerOptions.Builder<TeamModel>()
-                .setQuery(query, TeamModel.class)
+        FirestoreRecyclerOptions<TeamScoreModel> options = new FirestoreRecyclerOptions.Builder<TeamScoreModel>()
+                .setQuery(query, TeamScoreModel.class)
                 .build();
 
-        mAdapter = new FirestoreRecyclerAdapter<TeamModel, TeamVH>(options) {
+        mAdapter = new FirestoreRecyclerAdapter<TeamScoreModel, TeamScoreVH>(options) {
             @Override
-            public void onBindViewHolder(TeamVH holder, int position, final TeamModel model) {
+            public void onBindViewHolder(TeamScoreVH holder, int position, final TeamScoreModel model) {
                 holder.setData(model);
                 holder.setOnRecyclerViewClickListener(new OnRecyclerItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        TeamDetailActivity.start(getActivity(), projectName, type, model);
+                        
                     }
                 });
             }
 
             @Override
-            public TeamVH onCreateViewHolder(ViewGroup group, int i) {
+            public TeamScoreVH onCreateViewHolder(ViewGroup group, int i) {
                 View view = LayoutInflater.from(group.getContext())
-                        .inflate(R.layout.team_list_item_layout, group, false);
+                        .inflate(R.layout.team_score_list_item_layout, group, false);
 
-                return new TeamVH(view);
+                return new TeamScoreVH(view);
             }
 
             @Override
@@ -149,5 +158,4 @@ public class TeamsFragment extends Fragment {
         super.onStop();
         mAdapter.stopListening();
     }
-
 }

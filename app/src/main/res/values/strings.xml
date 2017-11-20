@@ -11,4 +11,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="something_went_wrong_while_getting_teams">
         Something went wrong while getting teams.</string>
+    <string name="Members">Members</string>
+    <string name="something_went_wrong_while_getting_team_members">
+        Something went wrong while getting teams Members.</string>
+    <string name="scores">Scores</string>
 </resources>

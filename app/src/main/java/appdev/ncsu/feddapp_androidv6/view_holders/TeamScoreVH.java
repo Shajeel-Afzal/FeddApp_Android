@@ -1,25 +1,24 @@
 package appdev.ncsu.feddapp_androidv6.view_holders;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import appdev.ncsu.feddapp_androidv6.R;
 import appdev.ncsu.feddapp_androidv6.listeners.OnRecyclerItemClickListener;
-import appdev.ncsu.feddapp_androidv6.models.TeamModel;
+import appdev.ncsu.feddapp_androidv6.models.TeamScoreModel;
 
 /**
- * Created by shajeelafzal on 19/11/2017.
+ * Created by shajeelafzal on 20/11/2017.
  */
 
-public class TeamVH extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class TeamScoreVH extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView teamNameTV, scoreTV;
     private View mItemView;
     private OnRecyclerItemClickListener onRecyclerViewClickListener;
 
-    public TeamVH(View itemView) {
+    public TeamScoreVH(View itemView) {
         super(itemView);
         findViews(itemView);
         itemView.setOnClickListener(this);
@@ -31,15 +30,9 @@ public class TeamVH extends RecyclerView.ViewHolder implements View.OnClickListe
         this.mItemView = itemView.findViewById(R.id.team_list_item_layout_id);
     }
 
-    public void setData(TeamModel model) {
+    public void setData(TeamScoreModel model) {
         teamNameTV.setText(model.getName());
-        scoreTV.setText(String.valueOf(model.getTotal() == null ? "" : model.getTotal()));
-
-        if (!model.isPublished()) {
-            mItemView.setBackgroundColor(Color.GRAY);
-        } else {
-            mItemView.setBackgroundColor(Color.TRANSPARENT);
-        }
+//        scoreTV.setText(String.valueOf(model.getTotal() == null ? "" : model.getTotal()));
     }
 
     public void setOnRecyclerViewClickListener(OnRecyclerItemClickListener onRecyclerViewClickListener) {
