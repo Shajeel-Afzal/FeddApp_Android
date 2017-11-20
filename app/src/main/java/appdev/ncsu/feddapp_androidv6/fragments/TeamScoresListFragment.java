@@ -97,7 +97,7 @@ public class TeamScoresListFragment extends Fragment {
                 holder.setOnRecyclerViewClickListener(new OnRecyclerItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        
+
                     }
                 });
             }

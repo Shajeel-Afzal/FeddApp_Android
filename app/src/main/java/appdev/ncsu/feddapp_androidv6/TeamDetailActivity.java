@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import appdev.ncsu.feddapp_androidv6.fragments.MembersFragment;
+import appdev.ncsu.feddapp_androidv6.fragments.TeamRequirementsFragment;
 import appdev.ncsu.feddapp_androidv6.fragments.TeamScoresListFragment;
 import appdev.ncsu.feddapp_androidv6.models.TeamModel;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
@@ -22,6 +23,7 @@ public class TeamDetailActivity extends BaseActivity {
     private String mProjectName;
     private String mType;
     private TeamScoresListFragment mTeamScoresListFrag;
+    private TeamRequirementsFragment mTeamRequirementsFrag;
 
     public static void start(Context context, String projectName, String type, TeamModel teamModel) {
         Intent starter = new Intent(context, TeamDetailActivity.class);
@@ -56,8 +58,8 @@ public class TeamDetailActivity extends BaseActivity {
     }
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-        final int PAGE_COUNT = 2;
-        private String tabTitles[] = new String[]{getString(R.string.Members), getString(R.string.scores)};
+        final int PAGE_COUNT = 3;
+        private String tabTitles[] = new String[]{getString(R.string.Members), getString(R.string.scores), getString(R.string.requirements)};
 
         public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
@@ -81,11 +83,16 @@ public class TeamDetailActivity extends BaseActivity {
                         mTeamScoresListFrag = TeamScoresListFragment.newInstance(mProjectName, mType, mTeamModel.getName());
 
                     return mTeamScoresListFrag;
-                default:
-                    if (mTeamScoresListFrag == null)
-                        mTeamScoresListFrag = TeamScoresListFragment.newInstance(mProjectName, mType, mTeamModel.getName());
+                case 2:
+                    if (mTeamRequirementsFrag == null)
+                        mTeamRequirementsFrag = TeamRequirementsFragment.newInstance();
 
-                    return mTeamScoresListFrag;
+                    return mTeamRequirementsFrag;
+                default:
+                    if (mTeamRequirementsFrag == null)
+                        mTeamRequirementsFrag = TeamRequirementsFragment.newInstance();
+
+                    return mTeamRequirementsFrag;
             }
         }
 
