@@ -16,4 +16,10 @@
         Something went wrong while getting teams Members.</string>
     <string name="scores">Scores</string>
     <string name="requirements">Requirements</string>
+    <string name="enter_team_name">Enter team name</string>
+    <string name="team_member_1">Team member # 1</string>
+    <string name="team_member_2">Team member # 2</string>
+    <string name="team_member_3">Team member # 3</string>
+    <string name="team_member_4">Team member # 4</string>
+    <string name="team_member_5">Team member # 5</string>
 </resources>

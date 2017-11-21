@@ -27,7 +27,8 @@
 
         <activity android:name=".TeamsActivity" />
         <activity android:name=".TeamDetailActivity" />
-        <activity android:name=".ScoreDetailActivity"></activity>
+        <activity android:name=".ScoreDetailActivity" />
+        <activity android:name=".CreateTeamActivity"></activity>
     </application>
 
 </manifest>

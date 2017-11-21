@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import appdev.ncsu.feddapp_androidv6.fragments.TeamsFragment;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
@@ -86,5 +88,20 @@ public class TeamsActivity extends BaseActivity {
             // Generate title based on item position
             return tabTitles[position];
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.team_activity_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.add_team) {
+            CreateTeamActivity.start(this, mProjectName);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
