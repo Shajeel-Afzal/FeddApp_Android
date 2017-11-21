@@ -14,4 +14,5 @@ public class Consts {
     public static final String KEY_TEAM_MODEL = "key_team_model";
     public static final String KEY_TEAM_NAME = "key_team_name";
     public static final String KEY_FIRSTORE_COLLECTION_TEAM_SCORES = "Scores";
+    public static final String KEY_TEAM_SCORE_MODEL = "key_team_score_model";
 }

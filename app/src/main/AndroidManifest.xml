@@ -26,7 +26,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".TeamsActivity" />
-        <activity android:name=".TeamDetailActivity"></activity>
+        <activity android:name=".TeamDetailActivity" />
+        <activity android:name=".ScoreDetailActivity"></activity>
     </application>
 
 </manifest>
