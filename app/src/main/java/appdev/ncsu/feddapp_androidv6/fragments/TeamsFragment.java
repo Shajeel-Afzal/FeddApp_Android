@@ -106,7 +106,12 @@ public class TeamsFragment extends Fragment {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
-                mStatefulLayout.showContent();
+
+                if (mAdapter.getItemCount() == 0) {
+                    mStatefulLayout.setEmptyText("No Team Found!");
+                    mStatefulLayout.showEmpty();
+                } else
+                    mStatefulLayout.showContent();
             }
 
             @Override
