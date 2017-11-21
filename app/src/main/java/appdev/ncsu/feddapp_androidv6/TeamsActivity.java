@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import appdev.ncsu.feddapp_androidv6.fragments.TeamsFragment;
 import appdev.ncsu.feddapp_androidv6.utils.Consts;
 
@@ -92,7 +94,9 @@ public class TeamsActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.team_activity_menu, menu);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+            getMenuInflater().inflate(R.menu.team_activity_menu, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 

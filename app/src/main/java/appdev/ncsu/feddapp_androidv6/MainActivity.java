@@ -53,7 +53,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            getMenuInflater().inflate(R.menu.main_activity_no_login_menu, menu);
+        else
+            getMenuInflater().inflate(R.menu.main_activity_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -63,6 +67,9 @@ public class MainActivity extends BaseActivity {
             if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                 AuthUI.getInstance().signOut(this);
             }
+        } else if (item.getItemId() == R.id.exit_menu_id) {
+            LoginActivity.start(this);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

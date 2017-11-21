@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -88,7 +89,8 @@ public class TeamsFragment extends Fragment {
                 holder.setOnRecyclerViewClickListener(new OnRecyclerItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        TeamDetailActivity.start(getActivity(), projectName, type, model);
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                            TeamDetailActivity.start(getActivity(), projectName, type, model);
                     }
                 });
             }

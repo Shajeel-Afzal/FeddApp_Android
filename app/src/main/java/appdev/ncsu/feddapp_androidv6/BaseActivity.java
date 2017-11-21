@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import appdev.ncsu.feddapp_androidv6.utils.Consts;
+import appdev.ncsu.feddapp_androidv6.utils.PrefUtils;
+
 /**
  * Created by shajeelafzal on 19/11/2017.
  */
@@ -25,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user == null) {
+                if (user == null && !PrefUtils.getBoolean(BaseActivity.this, Consts.LEADERBOARD_KEY)) {
                     /* Move user to LoginActivity, and remove the backstack */
                     Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

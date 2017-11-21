@@ -1,5 +1,6 @@
 package appdev.ncsu.feddapp_androidv6;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,9 @@ import com.firebase.ui.auth.IdpResponse;
 
 import java.util.Collections;
 
+import appdev.ncsu.feddapp_androidv6.utils.Consts;
+import appdev.ncsu.feddapp_androidv6.utils.PrefUtils;
+
 /**
  * Created by shajeelafzal on 19/11/2017.
  */
@@ -19,6 +23,11 @@ import java.util.Collections;
 public class LoginActivity extends BaseActivity {
 
     private static final int RC_SIGN_IN = 101;
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, LoginActivity.class);
+        context.startActivity(starter);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,5 +82,11 @@ public class LoginActivity extends BaseActivity {
 
     private void showSnackbar(int id) {
         Snackbar.make(findViewById(android.R.id.content), getString(id), Snackbar.LENGTH_LONG).show();
+    }
+
+    public void onLeaderBoardClick(View view) {
+        PrefUtils.saveBoolean(this, Consts.LEADERBOARD_KEY, true);
+        MainActivity.start(this);
+        finish();
     }
 }
