@@ -41,7 +41,6 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectVH> {
         projectModels.add(new ProjectModel("Nuclear Power Probe", R.drawable.nuclear));
         projectModels.add(new ProjectModel("Precision Launcher", R.drawable.launcher));
         projectModels.add(new ProjectModel("Toy Design", R.drawable.toy));
-        projectModels.add(new ProjectModel("Shajeel Test Category", R.drawable.dprinting));
     }
 
     public ProjectModel getProjectModel(int position) {
